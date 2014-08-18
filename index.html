@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+        <head>
+                <title>D3Twitter - Visualize your status retweets</title>
+                <script src="http://d3js.org/d3.v2.js"></script>
+                <style type="text/css">
+                        body
+                        {
+                                font-family: 'Helvetica Neue', Arial, sans-serif;
+                                font-size: 0.8em;
+                                color: #333;
+                        }
+                        h1 {
+                                font-size: 3em;
+                        }
+                        h2 {
+                                font-size: 2em;
+                        }
+                        div#container
+                        {
+                            text-align: left;
+                            margin-left: auto;
+                            margin-right: auto;
+                        }
+                </style>
+        </head>
+        <body>
+                <h1>D3 Twitter</h1>
+                <p>Visualize the network created when a tweet is <a href="https://support.twitter.com/articles/77606">retweeted</a>.
+                <!-- Place this tag where you want the +1 button to render. -->
+<span class="g-plusone" data-size="small" data-annotation="inline" data-width="300"></span></p>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+		<h2>Example</h2>
+		<iframe src="http://d3-twitter.appspot.com/231546862459551745" width="670px" height="560px" frameborder="0"></iframe>
+                <div class="container">
+                <h2>FAQ</h2>
+                <ol>
+                    <li><b>How do I try this?</b><p>Go to your address bar and fill in the status id of the tweet you want to visualize.</p>
+			<p><b>Walk through:</b></p>
+                        <p>Open the tweet you want to visualize, and copy the large number</p>
+                        <img src="images/howto1.jpg" alt="twitter.com address bar containing status number">
+                        <p>Go to http://d3-twitter.appspot.com/, and paste the number at the end of the url</p>
+                        <img src="images/howto2.jpg" alt="status bar of d3-tweeter">
+                        <p>that's it!</p>
+                    </li>
+		<li><b>Can I embed this application on my website?</b><p>Sure you can! just place this line of code with the correct status id:<code>		&lt;iframe src="http://d3-twitter.appspot.com/231546862459551745" width=670px height=560px frameborder=0&gt;&lt;/iframe&gt;
+</code></p></li>
+		    <li><b>Whats with all the white space, on where the example should be?</b><p>Sorry, it seems you might be running an old browser version. Please update your web browser.</p></li>
+                    <li><b>How was this accomplished?</b><p>This demo makes use of <a href='http://d3js.org'>d3js</a>, <a href='https://developers.google.com/appengine/'>google app engine (GAE)</a> and <a href='https://github.com/tweepy/tweepy/'>tweepy</a>. Oh! and of course Python.</p></li>
+                    <li><b>Why aren't all circles equal?</b><p>One of the circle's represents the author of the status message (the one in dark blue), then each circle has a dimension proportional to the number of followers (capped at 400 followers).</p></li>
+                    <li><b>Why are some circles disconnected?</b><p>The most likely reason is that a protected user (who likes to keep it's privacy) retweeted the status therefore breaking the graph.</p></li>
+		    <li><b>Now, why would you want to do this?</b><p>Here's the thing, I wanted to test drive GAE with Python and needed to come up with a simple application. Just a few days before one of my tweets started being retweeted by a bunch of folks I never met, so I googled for a tool to visualize the connection between those folks and saw nothing that good enough (hereby imply that flash is not OK). So I guessed it was worth reinventing the wheel!</p></li>
+                    <li><b>Why is twitter asking for permission?</b><p>The app will use your twitter account to request information from twitter on the users who have retweeted the status you requested. The authorization is valid <em>only</em> for a single status check, although the status results will be cached for the next user who uses the app to get the visualization of the same status.</p></li>
+                    <li><b>After using your service, my &lt;insert twitter application&gt; is not working anymore, have you hacked my account?</b><p><em>D3 Twitter</em> does not keep your user nor password in anyway, it uses the <a href="https://dev.twitter.com/docs/auth/oauth/faq">OAuth protocol</a> to request Twitter permission to use the API on your behalf. That said, twitter has a rate limit on the number of calls one can make at it's API (<a href="https://dev.twitter.com/docs/rate-limiting/faq">see here)</a>. Due it's nature, <em>D3 Twitter</em> might issue an unusual number of API calls to twitter eventually reaching the said limit. When that happens, twitter will not enable <em>any</em> application to issue calls to it's API for a limited period of time (usually few minutes). So in case that happened to you, don't panic! Your application will be back in a couple of minutes, and sorry for that :)</p></li>
+		    <li><b>Who wrote this service?</b><p>That would be <a href=http://www.diogogomes.com>me.</a><p></li>
+		<li><b>Is this site affiliated to Twitter?</b><p>By no means.</p></li>
+		   <li><b>Why the name <em>D3 Twitter</em>?</b><p>It's a word play with D3js and Twitter, just that nothing else.</p></li>
+	 	   <li><b>Do you plan on open sourcing it?</b><p>Probably, but you can always ask me for the code (<a href="http://twitter.com/dgomes">@dgomes</a>)</p></li>
+		   <li><b>What's with the extended FAQ?</b><p>You are putting in the questions, I'm just answering them. Still have questions? contact me</p></li>
+		</ol>
+		<h3>Credits</h3>
+		<ul>
+			<li>D3js was vital to accomplishing this service, especially due to their examples. This end result is mostly a rework of the <a href="http://bl.ocks.org/1153292">Mobile Patent Suits</a> example.
+		</ul>
+		</div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-34067787-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+        </body>
+</html>
